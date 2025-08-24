@@ -4,34 +4,31 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>5Levels</title>
-  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Header -->
-  <header class="header">
+  <header>
     <h1>5Levels</h1>
     <div class="controls">
-      <button id="theme-toggle">🌙</button>
-      <select id="language-switcher">
-        <option value="en">EN</option>
-        <option value="es">ES</option>
-        <option value="de">DE</option>
-        <option value="ar">AR</option>
-      </select>
+      <button id="lang-en">EN</button>
+      <button id="lang-es">ES</button>
+      <button id="lang-de">DE</button>
+      <button id="lang-ar">AR</button>
+      <button id="toggle-theme">🌙</button>
     </div>
   </header>
 
-  <!-- Main Content -->
-  <main class="main">
-    <input type="text" id="search" placeholder="Search a topic...">
-    <p id="welcome-text">Welcome to 5Levels – Explore knowledge step by step.</p>
+  <main>
+    <input type="text" placeholder="ابحث عن موضوع..." id="search">
+    <div id="content">
+      <p>مرحباً بك في موقع 5Levels. هنا ستجد مقالات ومعرفة من مختلف المجالات.</p>
+    </div>
   </main>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <p>© 5Levels. All rights reserved.</p>
+  <footer>
+    <p>© 5Levels. كل الحقوق محفوظة.</p>
   </footer>
 
-  <script src="assets/script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
