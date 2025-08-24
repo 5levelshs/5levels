@@ -1,0 +1,377 @@
+<!DOCTYPE html><html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>5Levels — اشرحها بخمس مستويات</title>
+  <meta name="description" content="موقع يشرح المفاهيم بخمس مستويات من طفل إلى باحث، بثلاث لغات (عربي/إنجليزي/فرنسي) ومزايا بحث متقدم وتصدير PDF ووضع داكن/فاتح." />
+  <meta name="theme-color" content="#0ea5e9" />  <style>
+    :root{
+      --bg:#0b1220; --panel:#0f172a; --muted:#94a3b8; --text:#e2e8f0; --brand:#0ea5e9; --ok:#10b981; --warn:#f59e0b; --danger:#ef4444;
+      --radius:18px; --shadow:0 10px 30px rgba(2,6,23,.35);
+    }
+    [data-theme='light']{ --bg:#f6f7fb; --panel:#ffffff; --muted:#475569; --text:#071025; --brand:#0ea5e9; --shadow:0 6px 20px rgba(2,6,23,.06); }
+
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,"Noto Sans",Ubuntu,Cantarell,"Helvetica Neue",Arial,Cairo;transition:background .2s,color .2s}
+    a{color:inherit}
+    .container{max-width:1100px;margin:0 auto;padding:24px}
+    header{position:sticky;top:0;background:rgba(11,18,32,.6);backdrop-filter:blur(6px);z-index:20;border-bottom:1px solid rgba(148,163,184,.06)}
+    .topbar{display:flex;gap:16px;align-items:center;justify-content:space-between;padding:12px 24px}
+    .logo{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.2px}
+    .badge{font-size:12px;color:#001018;background:var(--brand);padding:4px 10px;border-radius:999px}
+    .searchbar{display:flex;gap:10px;align-items:center;background:var(--panel);border:1px solid rgba(148,163,184,.08);border-radius:999px;padding:8px 12px;box-shadow:var(--shadow)}
+    .searchbar input{border:none;outline:none;background:transparent;color:var(--text);min-width:200px}
+    .lang-switch{display:flex;gap:6px}
+    .chip{border:1px solid rgba(148,163,184,.08);background:transparent;color:var(--text);padding:6px 10px;border-radius:999px;cursor:pointer}
+    .chip.active{border-color:var(--brand);box-shadow:0 0 0 2px rgba(14,165,233,.08) inset}
+
+    /* layout */
+    main{padding:24px}
+    .grid{display:grid;gap:16px}
+    @media(min-width:720px){.grid.cols-3{grid-template-columns:repeat(3,1fr)}}
+    @media(min-width:920px){.grid.cols-4{grid-template-columns:repeat(4,1fr)}}
+
+    /* cards */
+    .card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(0,0,0,0.02));border:1px solid rgba(148,163,184,.06);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);transition:transform .12s ease, border-color .12s}
+    .card:hover{transform:translateY(-2px);border-color:rgba(14,165,233,.2)}
+    .card h3{margin:6px 0 8px 0}
+    .tag{font-size:12px;color:var(--muted);border:1px solid rgba(148,163,184,.08);padding:3px 8px;border-radius:999px;display:inline-block;margin-inline:4px}
+
+    .pill{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;border:1px solid rgba(148,163,184,.08);color:var(--muted)}
+
+    /* topic view */
+    .levels{display:grid;gap:12px}
+    .level{border-radius:16px;border:1px solid rgba(148,163,184,.06);background:var(--panel);overflow:hidden}
+    .level summary{cursor:pointer;list-style:none;padding:14px 18px;font-weight:700;display:flex;align-items:center;justify-content:space-between;}
+    .level summary::-webkit-details-marker{display:none}
+    .level-body{padding:16px 18px;border-top:1px solid rgba(148,163,184,.04)}
+
+    .quiz{border:1px dashed rgba(148,163,184,.08);border-radius:14px;padding:12px;margin-top:8px}
+    .quiz h4{margin:0 0 8px}
+    .quiz .q{margin:10px 0;font-weight:600}
+    .quiz label{display:block;margin:6px 0;padding:8px;border:1px solid rgba(148,163,184,.06);border-radius:12px;cursor:pointer}
+    .quiz label input{margin-inline-start:8px}
+    .quiz .result{margin-top:10px;font-weight:700}
+
+    .ad{background:repeating-linear-gradient(45deg, rgba(14,165,233,.06), rgba(14,165,233,.06) 10px, rgba(14,165,233,.02) 10px, rgba(14,165,233,.02) 20px );border:1px dashed rgba(14,165,233,.25);border-radius:14px;padding:14px;text-align:center;color:var(--muted)}
+
+    footer{padding:30px 24px;color:var(--muted);border-top:1px solid rgba(148,163,184,.06)}
+    .muted{color:var(--muted)}
+    .hidden{display:none!important}
+    .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+    .btn{background:var(--brand);color:#001018;border:none;border-radius:12px;padding:10px 14px;font-weight:700;cursor:pointer}
+    .btn.ghost{background:transparent;color:var(--text);border:1px solid rgba(148,163,184,.08)}
+    .kbd{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; padding:3px 6px;border-radius:6px;border:1px solid rgba(148,163,184,.08);color:var(--muted)}
+
+    .hero{display:grid;gap:18px;padding:22px;background:radial-gradient(1200px 400px at 50% -10%, rgba(14,165,233,.06), transparent);border:1px solid rgba(148,163,184,.06);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .hero h1{margin:0;font-size:clamp(26px,3vw,40px)}
+    .hero p{margin:0;color:var(--muted)}
+
+    /* advanced search panel */
+    .filters{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+    .filters .group{background:var(--panel);padding:10px;border-radius:12px;border:1px solid rgba(148,163,184,.04)}
+
+    @media print{
+      header, footer, .btn, .lang-switch, .searchbar, .filters {display:none}
+      body{background:white;color:black}
+      .card, .level{border:none;box-shadow:none}
+    }
+  </style></head>
+<body>
+  <header>
+    <div class="topbar container">
+      <div class="logo" role="banner" aria-label="5Levels">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 20h14M5 4h14M7 8h10M9 12h6M11 16h2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span>5Levels</span>
+        <span class="badge">اشرحها بخمس مستويات</span>
+      </div><div class="row" role="search">
+    <div class="searchbar" aria-label="بحث">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 21l-4.3-4.3M10 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16Z" stroke="currentColor" stroke-width="2"/></svg>
+      <input id="q" type="search" placeholder="ابحث عن موضوع (مثال: ذكاء اصطناعي، تضخّم...)" oninput="renderHome()" />
+    </div>
+
+    <div style="display:flex;gap:8px;align-items:center">
+      <div class="lang-switch" aria-label="اللغة">
+        <button class="chip" data-lang="ar" onclick="setLang('ar')">AR</button>
+        <button class="chip" data-lang="en" onclick="setLang('en')">EN</button>
+        <button class="chip" data-lang="fr" onclick="setLang('fr')">FR</button>
+        <button class="chip" data-lang="es" onclick="setLang('es')">ES</button>
+        <button class="chip" data-lang="de" onclick="setLang('de')">DE</button>
+      </div>
+
+      <button class="chip" id="themeBtn" onclick="toggleTheme()" title="Toggle theme">🌓</button>
+      <button class="btn ghost" onclick="exportPDF()" title="Export as PDF">${'تصدير PDF'}</button>
+    </div>
+  </div>
+</div>
+
+  </header>  <main class="container" id="app" aria-live="polite"></main>  <footer class="container">
+    <div class="row" style="justify-content:space-between">
+      <div>
+        <span class="muted">© <span id="year"></span> 5Levels</span>
+        <span class="tag">مفتوح المصدر</span>
+        <a class="tag" href="#new" onclick="showHowTo()">أضف موضوعًا</a>
+      </div>
+      <div class="row">
+        <span class="kbd">#AR</span>
+        <span class="kbd">#EN</span>
+        <span class="kbd">#FR</span>
+      </div>
+    </div>
+  </footer>  <script id="faq-jsonld" type="application/ld+json">{}</script>  <script>
+  // ======= Minimal data layer (add topics here) =======
+  const topics = [
+    // existing example topic
+    {
+      slug: 'blockchain',
+      tags: ['technology','finance','security'],
+      i18n: {
+        ar: {title:'البلوكشين', summary:'سلسلة كتل تحفظ السجلات بطريقة لا مركزية تصعّب التزوير.'},
+        en: {title:'Blockchain', summary:'A decentralized ledger of records linked in blocks, hard to tamper with.'},
+        fr: {title:'Blockchain', summary:'Grand registre décentralisé de données reliées en blocs, difficile à falsifier.'},
+        es: {title:'Blockchain', summary:'Libro mayor descentralizado de registros en bloques, difícil de falsificar.'},
+        de: {title:'Blockchain', summary:'Dezentrales Hauptbuch von Datensätzen in Blöcken, schwer zu fälschen.'}
+      },
+      levels: [ /* levels data as before — omitted here in the snippet for brevity but present in file */
+        { key:'kid', i18n:{ ar:{title:'مستوى طفل (6 سنوات)', body:'تخيل دفترًا كبيرًا يكتب فيه الجميع معاملات الشراء والبيع. كل شخص يحتفظ بنسخة، ولا أحد يستطيع أن يغيّر صفحات قديمة بمفرده.'}, en:{title:'Level 1 — Child', body:'Imagine a big notebook where everyone writes buys and sells. Everyone has a copy, and no one can change old pages alone.'}, fr:{title:'Niveau 1 — Enfant', body:'Imagine un grand cahier où tout le monde écrit les achats et ventes. Chacun a une copie et personne ne change les anciennes pages tout seul.'}, es:{title:'Nivel 1 — Niño', body:'Imagina un cuaderno grande donde todos escriben compras y ventas. Todos tienen una copia y nadie puede cambiar páginas antiguas solo.'}, de:{title:'Stufe 1 — Kind', body:'Stell dir ein großes Heft vor, in das alle Käufe und Verkäufe schreiben. Alle haben eine Kopie und niemand kann alte Seiten alleine ändern.'} }, quiz:[{ q:{ar:'لماذا يصعب الغش في الدفتر؟', en:'Why is cheating hard?', fr:'Pourquoi est-il difficile de tricher ?', es:'¿Por qué es difícil hacer trampa?', de:'Warum ist Schummeln schwierig?'}, options:{ar:['لأن النسخ كثيرة','لأنه سري','لأنه صغير'], en:['Many copies','It\'s secret','It\'s small'], fr:['Beaucoup de copies','C\'est secret','Il est petit'], es:['Muchas copias','Es secreto','Es pequeño'], de:['Viele Kopien','Es ist geheim','Es ist klein']}, correct:0 }] },
+        { key:'teen', i18n:{ ar:{title:'مستوى مراهق', body:'البلوكشين سلسلة من كتل البيانات. كل كتلة تشير لما قبلها عبر قيمة تجزئة (Hash). أي تعديل يغيّر التجزئة ويفسد السلسلة.'}, en:{title:'Level 2 — Teen', body:'A blockchain is a chain of data blocks. Each block points to the previous via a hash. Editing breaks the chain.'}, fr:{title:'Niveau 2 — Adolescent', body:'Une blockchain est une chaîne de blocs. Chaque bloc référence le précédent via un hash. Modifier casse la chaîne.'}, es:{title:'Nivel 2 — Adolescente', body:'La blockchain es una cadena de bloques. Cada bloque apunta al anterior mediante un hash. Editar la cadena la rompe.'}, de:{title:'Stufe 2 — Teen', body:'Blockchain ist eine Kette von Datenblöcken. Jeder Block verweist per Hash auf den vorherigen. Bearbeiten bricht die Kette.'}} , quiz:[{ q:{ar:'ما الذي يربط الكتل؟', en:'What links blocks?', fr:'Qu\'est-ce qui relie les blocs ?', es:'¿Qué enlaza los bloques?', de:'Was verbindet Blöcke?'}, options:{ar:['التوقيعات','التجزئة','الوقت'], en:['Signatures','Hash','Time'], fr:['Signatures','Hash','Temps'], es:['Firmas','Hash','Tiempo'], de:['Signaturen','Hash','Zeit']}, correct:1 }] },
+        { key:'undergrad', i18n:{ ar:{title:'مستوى طالب جامعي', body:'شبكة لا مركزية مع آليات توافق مثل Proof of Work/Stake؛ تجزئة وتوقيعات رقمية تؤمن السجل مع شفافية عامة وخصوصية جزئية.'}, en:{title:'Level 3 — Undergrad', body:'Decentralized network with consensus (PoW/PoS); hashing and digital signatures secure a public-but-partial-privacy ledger.'}, fr:{title:'Niveau 3 — Licence', body:'Réseau décentralisé avec consensus (PoW/PoS) ; hachage et signatures numériques pour un registre public à confidentialité partielle.'}, es:{title:'Nivel 3 — Estudiante', body:'Red descentralizada con consenso (PoW/PoS); hashing y firmas digitales aseguran un libro público con privacidad parcial.'}, de:{title:'Stufe 3 — Student', body:'Dezentrales Netzwerk mit Konsens (PoW/PoS); Hashing und digitale Signaturen sichern ein öffentliches, aber teils privates Ledger.'}} , quiz:[{ q:{ar:'مثال على آلية التوافق؟', en:'Example of consensus?', fr:'Exemple de consensus ?', es:'Ejemplo de consenso?', de:'Beispiel für Konsens?'}, options:{ar:['TLS','PoW','DNS'], en:['TLS','PoW','DNS'], fr:['TLS','PoW','DNS'], es:['TLS','PoW','DNS'], de:['TLS','PoW','DNS']}, correct:1 }] },
+        { key:'pro', i18n:{ ar:{title:'مستوى محترف', body:'هياكل ميركل، زمن الكتلة، صعوبة التعدين، الحوكمة، قيود القابلية للتوسع (TPS/طبقات ثانية).'}, en:{title:'Level 4 — Pro', body:'Merkle trees, block time, mining difficulty, governance, scalability limits (TPS/Layer2).'}, fr:{title:'Niveau 4 — Pro', body:"Arbres de Merkle, temps de bloc, difficulté de minage, gouvernance, limites d\'évolutivité (TPS/Layer2)."}, es:{title:'Nivel 4 — Pro', body:'Árboles Merkle, tiempo de bloque, dificultad de minería, gobernanza, límites de escalabilidad (TPS/Capa2).'}, de:{title:'Stufe 4 — Pro', body:'Merkle-Bäume, Blockzeit, Mining-Schwierigkeit, Governance, Skalierbarkeitsgrenzen (TPS/Layer2).'}} , quiz:[{ q:{ar:'ما الغرض من Merkle tree؟', en:'Purpose of Merkle tree?', fr:'But d\'un arbre de Merkle ?', es:'¿Para qué sirve Merkle tree?', de:'Zweck des Merkle-Baums?'}, options:{ar:['ضغط والتحقق','التخزين المؤقت','التشفير المتماثل'], en:['Efficient proofs','Caching','Symmetric crypto'], fr:['Preuves efficaces','Cache','Chiffrement symétrique'], es:['Pruebas eficientes','Caché','Cripto simétrica'], de:['Effiziente Nachweise','Caching','Symmetrische Kryptographie']}, correct:0 }] },
+        { key:'research', i18n:{ ar:{title:'مستوى باحث', body:'نقاط فشل اقتصادية/أمنية: هجمات %51، اقتصاديات الحوافز، تكوين الطبقات (Rollups/Channels)، نماذج الحوكمة واللامركزية الفعلية.'}, en:{title:'Level 5 — Research', body:'Security/economic failure modes: 51% attacks, incentive economics, L2 compositions (rollups/channels), governance & effective decentralization.'}, fr:{title:'Niveau 5 — Recherche', body:"Modes de défaillance sécurité/économie : attaques 51 %, incitations, couches L2 (rollups/canaux), gouvernance & décentralisation effective."}, es:{title:'Nivel 5 — Investigación', body:'Modos de fallo seguridad/económicos: ataques 51%, economía de incentivos, composición L2 (rollups/canales), gobernanza.'}, de:{title:'Stufe 5 — Forschung', body:'Sicherheits-/ökonomische Ausfallmodi: 51%-Angriffe, Anreizökonomik, L2-Kompositionen (Rollups/Kanäle), Governance.'}}, sources:[{name:'Bitcoin Whitepaper', url:'https://bitcoin.org/bitcoin.pdf'},{name:'Vitalik Buterin', url:'https://vitalik.ca/'}], quiz:[{ q:{ar:'ما المقصود بهجوم 51%؟', en:'What is a 51% attack?', fr:"Qu'est-ce qu'une attaque 51 % ?", es:'¿Qué es un ataque 51%?', de:'Was ist ein 51%-Angriff?'}, options:{ar:['سيطرة غالبية القدرة الحاسوبية','تشفير المفاتيح','توقف العقد'], en:['Majority hashpower control','Key encryption','Node downtime'], fr:['Contrôle de la puissance de hachage','Chiffrement des clés','Panne des nœuds'], es:['Control de la mayoría del hashpower','Cifrado de claves','Tiempo de inactividad de nodos'], de:['Kontrolle der Mehrheit der Hashpower','Verschlüsselung von Schlüsseln','Ausfall von Knoten']}, correct:0 }] }
+      ]
+    }
+  ];
+
+  // ======= App state =======
+  const state = {
+    lang: localStorage.getItem('lang') || 'ar',
+    route: location.hash.slice(1) || '',
+    theme: localStorage.getItem('theme') || (matchMedia && matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'),
+    filters: { tags: new Set(), level: '' }
+  };
+
+  function setLang(l){
+    state.lang = l; localStorage.setItem('lang', l);
+    document.documentElement.lang = l;
+    document.documentElement.dir = (l==='ar'?'rtl':'ltr');
+    document.querySelectorAll('.lang-switch .chip').forEach(b=>b.classList.toggle('active', b.dataset.lang===l));
+    render();
+  }
+
+  function setTheme(t){
+    state.theme = t; localStorage.setItem('theme', t);
+    document.documentElement.setAttribute('data-theme', t);
+    document.getElementById('themeBtn').textContent = t==='light' ? '🌤️' : '🌙';
+  }
+  function toggleTheme(){ setTheme(state.theme==='light'?'dark':'light'); }
+
+  // init theme
+  document.addEventListener('DOMContentLoaded', ()=> setTheme(state.theme));
+
+  // Routing
+  window.addEventListener('hashchange', ()=>{ state.route = location.hash.slice(1); render(); });
+  function navigate(path){ location.hash = path; }
+
+  // Helpers
+  const t = (obj)=> (obj?.[state.lang]) || obj?.ar || obj?.en || obj?.fr || obj?.es || obj?.de || '';
+  const esc = (s)=> String(s).replace(/[&<>"]/g, m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[m]));
+
+  function allTags(){ const s = new Set(); topics.forEach(tp=> (tp.tags||[]).forEach(tag=>s.add(tag))); return Array.from(s).sort(); }
+
+  function searchTopics(q){
+    q = (q||'').toLowerCase();
+    return topics.filter(tp=>{
+      const hay = [tp.slug, t(tp.i18n)?.title, t(tp.i18n)?.summary, ...(tp.tags||[])].join(' ').toLowerCase();
+      if(state.filters.level){
+        const levels = tp.levels.map(l=>l.key||'');
+        if(!levels.includes(state.filters.level)) return false;
+      }
+      if(state.filters.tags.size){
+        const has = [...state.filters.tags].every(tag=> (tp.tags||[]).includes(tag));
+        if(!has) return false;
+      }
+      return hay.includes(q);
+    });
+  }
+
+  // Renderers
+  function render(){
+    document.querySelectorAll('.lang-switch .chip').forEach(b=>b.classList.toggle('active', b.dataset.lang===state.lang));
+    const path = state.route.split('/');
+    if(!path[0] || path[0]==='') return renderHome();
+    if(path[0]==='topic' && path[1]) return renderTopic(path[1]);
+    if(path[0]==='new') return showHowTo();
+    renderHome();
+  }
+
+  function renderHome(){
+    const q = document.getElementById('q')?.value || '';
+    const results = searchTopics(q);
+
+    const titles = {
+      ar:{hero:'اشرحها بخمس مستويات', sub:'من طفل إلى باحث — تبسيط دقيق لمفاهيم العالم.', topics:'موضوعًا', add:'أضف موضوعًا', export:'تصدير PDF'},
+      en:{hero:'Explain it in 5 levels', sub:'From child to researcher — precise explanations of complex ideas.', topics:'topics', add:'Add a topic', export:'Export PDF'},
+      fr:{hero:'Explique‑le en 5 niveaux', sub:"De l'enfant au chercheur — vulgarisation précise des concepts.", topics:'sujets', add:'Ajouter un sujet', export:'Exporter PDF'},
+      es:{hero:'Explícalo en 5 niveles', sub:'De niño a investigador — explicaciones claras de ideas complejas.', topics:'temas', add:'Añadir tema', export:'Exportar PDF'},
+      de:{hero:'Erkläre es in 5 Stufen', sub:'Vom Kind zum Forscher — präzise Erklärungen komplexer Ideen.', topics:'Themen', add:'Thema hinzufügen', export:'Als PDF'}
+    };
+    const L = titles[state.lang] || titles.en;
+
+    const hero = `
+      <section class="hero">
+        <div>
+          <h1>${esc(L.hero)}</h1>
+          <p>${esc(L.sub)}</p>
+        </div>
+        <div class="row">
+          <span class="pill">${results.length} ${esc(L.topics)}</span>
+          <div style="display:flex;gap:8px">
+            <button class="btn" onclick="navigate('new')">${esc(L.add)}</button>
+            <button class="btn ghost" onclick="exportPDF()">${esc(L.export)}</button>
+          </div>
+        </div>
+      </section>`;
+
+    // filters UI
+    const tagOptions = allTags().map(tag=>`<label style=\"margin-right:8px;\"><input type=\"checkbox\" data-tag=\"${tag}\" onchange=\"toggleTag(event)\"> ${esc(tag)}</label>`).join('');
+    const levelOptions = ['','kid','teen','undergrad','pro','research'].map(l=>`<option value=\"${l}\">${l|| (state.lang==='ar'? 'كل المستويات' : state.lang==='fr'? 'Tous niveaux' : state.lang==='es'? 'Todos' : state.lang==='de'? 'Alle' : 'All')}</option>`).join('');
+
+    const cards = results.map(tp=>{
+      const {title, summary} = t(tp.i18n);
+      return `
+        <article class="card" tabindex="0" role="article" aria-labelledby="h-${tp.slug}" onclick="navigate('topic/${tp.slug}')">
+          <div class="row" style="justify-content:space-between">
+            <h3 id="h-${tp.slug}">${esc(title)}</h3>
+            <div>
+              ${(tp.tags||[]).slice(0,3).map(tag=>`<span class="tag">${esc(tag)}</span>`).join('')}
+            </div>
+          </div>
+          <p class="muted">${esc(summary)}</p>
+        </article>`;
+    }).join('');
+
+    document.getElementById('app').innerHTML = `
+      ${hero}
+      <section style="margin-top:18px">
+        <div class="filters">
+          <div class="group"><strong>${state.lang==='ar'?'فلتر حسب الوسم':'Filter by tag'}</strong><div>${tagOptions || '<span class=\"muted\">—</span>'}</div></div>
+          <div class="group"><strong>${state.lang==='ar'?'فلتر حسب المستوى':'Filter by level'}</strong><div><select onchange="setLevelFilter(this.value)">${levelOptions}</select></div></div>
+          <div class="group"><strong>${state.lang==='ar'?'بحث سريع':'Quick search'}</strong><div><input placeholder='${state.lang==='ar'?'مثال: الذكاء الاصطناعي':'e.g. artificial intelligence'}' oninput='renderHome()'/></div></div>
+          <div class="group"><strong>${state.lang==='ar'?'مشاركة':'Share'}</strong><div><input readonly value='${location.href}' style='min-width:200px' onclick='this.select()' /></div></div>
+        </div>
+        <div style="margin-top:14px" class="grid cols-3">${cards || '<div class="muted">لا نتائج — جرّب فلتر آخر أو كلمة بحث.</div>'}</div>
+      </section>`;
+  }
+
+  function toggleTag(e){ const tag = e.target.dataset.tag; if(!tag) return; if(e.target.checked) state.filters.tags.add(tag); else state.filters.tags.delete(tag); renderHome(); }
+  function setLevelFilter(v){ state.filters.level = v; renderHome(); }
+
+  function renderTopic(slug){
+    const tp = topics.find(x=>x.slug===slug);
+    if(!tp){ document.getElementById('app').innerHTML = '<p>الموضوع غير موجود.</p>'; return; }
+    const {title, summary} = t(tp.i18n);
+
+    const faq = {"@context":"https://schema.org","@type":"FAQPage","mainEntity": []};
+
+    const levelsHtml = tp.levels.map((lvl, idx)=>{
+      const l = t(lvl.i18n);
+      const qHtml = (lvl.quiz||[]).map((q,qi)=>{
+        const opts = q.options[state.lang] || q.options.ar || q.options.en || q.options.fr || q.options.es || q.options.de || [];
+        const qq = q.q[state.lang] || q.q.ar || q.q.en || q.q.fr || q.q.es || q.q.de || '';
+        faq.mainEntity.push({"@type":"Question","name": qq, "acceptedAnswer":{"@type":"Answer","text": opts[q.correct] || ''}});
+        const name = `q_${slug}_${idx}_${qi}`;
+        return `
+          <div class="q">${esc(qq)}</div>
+          ${opts.map((opt,i)=>`<label><input type="radio" name="${name}" value="${i}" onchange="grade('${name}', ${q.correct})"> ${esc(opt)}</label>`).join('')}
+          <div id="${name}_res" class="result muted"></div>
+        `;
+      }).join('');
+
+      return `
+        <details class="level" ${idx<2?'open':''}>
+          <summary>
+            <span>${esc(l.title)}</span>
+            <small class="muted">${state.lang==='ar' ? 'انقر للفتح/الإغلاق' : state.lang==='fr' ? 'cliquer pour ouvrir/fermer' : state.lang==='es' ? 'clic para abrir/cerrar' : state.lang==='de' ? 'zum Öffnen/Schließen klicken' : 'toggle open/close'}</small>
+          </summary>
+          <div class="level-body">
+            <p>${l.body}</p>
+            ${lvl.quiz && lvl.quiz.length ? `<div class="quiz"><h4>${ state.lang==='ar' ? 'اختبر نفسك' : state.lang==='fr' ? 'Testez-vous' : state.lang==='es' ? 'Evalúate' : state.lang==='de' ? 'Testen Sie sich' : 'Self‑check' }</h4>${qHtml}</div>` : ''}
+            ${lvl.sources?.length && idx===tp.levels.length-1 ? `<div style="margin-top:12px" class="muted">${ state.lang==='ar' ? 'مصادر:' : state.lang==='fr' ? 'Sources :' : state.lang==='es' ? 'Fuentes:' : state.lang==='de' ? 'Quellen:' : 'Sources:' } ${lvl.sources.map(s=>`<a href="${s.url}" target="_blank" rel="noopener">${esc(s.name)}</a>`).join(' · ')}</div>` : ''}
+          </div>
+        </details>`;
+    }).join('');
+
+    document.getElementById('faq-jsonld').textContent = JSON.stringify(faq);
+
+    document.getElementById('app').innerHTML = `
+      <nav class="row" style="gap:8px;margin-bottom:14px">
+        <button class="btn ghost" onclick="navigate('')">← ${ state.lang==='ar' ? 'رجوع' : state.lang==='fr' ? 'Retour' : state.lang==='es' ? 'Atrás' : state.lang==='de' ? 'Zurück' : 'Back' }</button>
+        ${(tp.tags||[]).map(tag=>`<span class="tag">${esc(tag)}</span>`).join('')}
+        <div style="margin-left:auto" class="row"><button class="btn ghost" onclick="exportPDF()">${ state.lang==='ar'?'تصدير PDF': state.lang==='fr'?'Exporter PDF': state.lang==='es'?'Exportar PDF': state.lang==='de'?'Als PDF':'Export PDF'}</button></div>
+      </nav>
+      <section class="card" style="padding:22px">
+        <h2 style="margin:0 0 6px">${esc(title)}</h2>
+        <p class="muted" style="margin:0 0 14px">${esc(summary)}</p>
+        <div class="ad" style="margin:12px 0"><small>${ state.lang==='ar' ? 'موضع إعلان' : state.lang==='fr' ? 'Emplacement pub' : state.lang==='es' ? 'Lugar anuncio' : state.lang==='de' ? 'Anzeigenplatz' : 'Ad slot' }</small></div>
+        <div class="levels">${levelsHtml}</div>
+      </section>`;
+
+    // restore quiz answers after render
+    setTimeout(restoreQuizSelections, 50);
+  }
+
+  function grade(name, correct){
+    const inputs = Array.from(document.querySelectorAll(`input[name="${name}"]`));
+    const sel = inputs.find(i=>i.checked);
+    const res = document.getElementById(name+"_res");
+    if(!sel||!res) return;
+    const ok = Number(sel.value)===Number(correct);
+    res.textContent = ok ? (state.lang==='ar'?'إجابة صحيحة ✅':'✔ Correct') : (state.lang==='ar'?'إجابة خاطئة ❌':'✘ Wrong');
+    res.style.color = ok ? 'var(--ok)' : 'var(--danger)';
+    localStorage.setItem('quiz:'+name, sel.value);
+  }
+
+  function restoreQuizSelections(){
+    for(const k of Object.keys(localStorage)){
+      if(!k.startsWith('quiz:')) continue;
+      const val = localStorage.getItem(k);
+      const name = k.slice(5);
+      const radio = document.querySelector(`input[name="${name}"][value="${val}"]`);
+      if(radio){ radio.checked = true; const res = document.getElementById(name+"_res"); if(res) res.textContent = state.lang==='ar'?'إجابتك محفوظة':'Saved'; }
+    }
+  }
+
+  function showHowTo(){
+    const snippet = `// انسخه وعدّل وأضِفه داخل مصفوفة topics[]
+{
+  slug: 'your-topic-slug',
+  tags: ['category1','category2'],
+  i18n: { ar: { title: 'العنوان', summary: 'ملخص قصير.' }, en: { title: 'Title', summary: 'Short summary.' }, fr: { title: 'Titre', summary: 'Résumé court.' }, es:{title:'Título',summary:'Resumen.'}, de:{title:'Titel',summary:'Kurzbeschreibung.'} },
+  levels: [ ... ]
+}`;
+
+    document.getElementById('app').innerHTML = `
+      <section class="card" style="padding:22px">
+        <h2>${ state.lang==='ar' ? 'كيفية إضافة موضوع' : state.lang==='fr' ? 'Comment ajouter un sujet' : state.lang==='es' ? 'Cómo añadir un tema' : state.lang==='de' ? 'Wie man ein Thema hinzufügt' : 'How to add a topic' }</h2>
+        <ol>
+          <li>${ state.lang==='ar' ? 'افتح هذا الملف وحرّر المصفوفة <code>topics</code>.' : state.lang==='fr' ? 'Ouvrez ce fichier et éditez le tableau <code>topics</code>.' : state.lang==='es' ? 'Abra este archivo y edite el array <code>topics</code>.' : state.lang==='de' ? 'Öffnen Sie diese Datei und bearbeiten Sie das Array <code>topics</code>.' : 'Open this file and edit the <code>topics</code> array.' }</li>
+          <li>${ state.lang==='ar' ? 'انسخ القالب الموجود أسفل الصفحة، عدّل المحتوى، وأضِفه.' : state.lang==='fr' ? 'Copiez le modèle ci‑dessous, modifiez, puis ajoutez‑le.' : state.lang==='es' ? 'Copia la plantilla abajo, edítala y añádela.' : state.lang==='de' ? 'Kopieren Sie die Vorlage unten, bearbeiten Sie sie und fügen Sie sie hinzu.' : 'Copy the template below, edit, and add it.' }</li>
+          <li>${ state.lang==='ar' ? 'احفظ ثم ادفع التغييرات إلى GitHub.' : state.lang==='fr' ? 'Enregistrez et poussez sur GitHub.' : state.lang==='es' ? 'Guarde y haga push a GitHub.' : state.lang==='de' ? 'Speichern und nach GitHub pushen.' : 'Save and push to GitHub.' }</li>
+        </ol>
+        <pre style="white-space:pre-wrap;background:#0b1220;border:1px solid rgba(148,163,184,.08);border-radius:12px;padding:14px;">${esc(snippet)}</pre><div class="ad" style="margin-top:12px"><small>${ state.lang==='ar' ? 'موضع إعلان' : state.lang==='fr' ? 'Emplacement pub' : state.lang==='es' ? 'Lugar anuncio' : state.lang==='de' ? 'Anzeigenplatz' : 'Ad slot' }</small></div>
+    <div class="row" style="margin-top:10px">
+      <button class="btn" onclick="navigate('')">${ state.lang==='ar' ? 'رجوع للرئيسية' : state.lang==='fr' ? 'Retour' : state.lang==='es' ? 'Atrás' : state.lang==='de' ? 'Zurück' : 'Back' }</button>
+    </div>
+  </section>`;
+
+}
+
+function exportPDF(){ // Simple export: open print dialog (user can save as PDF) window.print(); }
+
+function toggleTagCheckboxes(mode){ // helper: used if later needed to programmatically check tags }
+
+// init document.getElementById('year').textContent = new Date().getFullYear(); setLang(state.lang); render(); document.addEventListener('DOMContentLoaded', restoreQuizSelections);
+
+  </script>
+</body>
+</html>
