@@ -4,85 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>5Levels - موقع المعرفة والفلسفة</title>
-<style>
-:root {
-  --primary-color: #2c3e50;
-  --secondary-color: #3498db;
-  --bg-color: #f5f5f5;
-  --text-color: #333;
-  --card-bg: #fff;
-}
-
-body.dark {
-  --bg-color: #121212;
-  --text-color: #eee;
-  --card-bg: #1e1e1e;
-}
-
-* { margin:0; padding:0; box-sizing:border-box; font-family: Arial, sans-serif; }
-
-body {
-  background-color: var(--bg-color);
-  color: var(--text-color);
-}
-
-header {
-  background-color: var(--primary-color);
-  color: #fff;
-  padding: 15px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-header h1 { font-size: 1.5em; }
-nav button { margin-left: 10px; padding:5px 10px; cursor:pointer; }
-
-main { padding: 20px; display: flex; flex-direction: column; gap: 20px; }
-
-.card {
-  background-color: var(--card-bg);
-  border-radius: 8px;
-  padding: 15px;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-}
-
-.search-bar input {
-  width: 100%;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  margin-bottom: 15px;
-}
-
-footer {
-  text-align: center;
-  padding: 15px;
-  margin-top: 20px;
-  background-color: var(--primary-color);
-  color: #fff;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-}
-
-.lang-selector button {
-  margin-left: 5px;
-  padding: 5px 8px;
-  cursor: pointer;
-}
-
-/* Responsive */
-@media (max-width:600px){
-  header { flex-direction: column; align-items: flex-start; }
-  nav { margin-top: 10px; }
-}
-</style>
+<link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 
 <header>
-  <h1 id="site-title">5Levels</h1>
+  <div class="logo">
+    <img src="assets/images/logo.png" alt="5Levels Logo" height="50">
+    <h1 id="site-title">5Levels</h1>
+  </div>
   <nav>
     <button id="toggle-theme">🌙</button>
     <div class="lang-selector">
@@ -108,52 +38,6 @@ footer {
   &copy; 2025 5Levels. كل الحقوق محفوظة.
 </footer>
 
-<script>
-// ======== البيانات ========
-const topics = [
-  { ar:"الفلسفة العقلية", en:"Rational Philosophy", es:"Filosofía racional", de:"Rationale Philosophie" },
-  { ar:"معرفة الذات", en:"Self Knowledge", es:"Conocimiento de sí mismo", de:"Selbstkenntnis" },
-  { ar:"المنطق والتفكير", en:"Logic & Thinking", es:"Lógica y pensamiento", de:"Logik & Denken" },
-  { ar:"أخلاق وسلوك", en:"Ethics & Behavior", es:"Ética y comportamiento", de:"Ethik & Verhalten" },
-];
-
-// ======== عرض المواضيع ========
-let currentLang = 'ar';
-function renderTopics(filter="") {
-  const container = document.getElementById('topics-container');
-  container.innerHTML = "";
-  topics
-    .filter(t => t[currentLang].toLowerCase().includes(filter.toLowerCase()))
-    .forEach(t => {
-      const card = document.createElement('div');
-      card.className = 'card';
-      card.textContent = t[currentLang];
-      container.appendChild(card);
-    });
-}
-renderTopics();
-
-// ======== البحث ========
-document.getElementById('search-input').addEventListener('input', e=>{
-  renderTopics(e.target.value);
-});
-
-// ======== تغيير اللغة ========
-document.querySelectorAll('.lang-selector button').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    currentLang = btn.dataset.lang;
-    document.body.dir = (currentLang==='ar')?'rtl':'ltr';
-    renderTopics(document.getElementById('search-input').value);
-  });
-});
-
-// ======== وضع داكن / فاتح ========
-const toggle = document.getElementById('toggle-theme');
-toggle.addEventListener('click', ()=>{
-  document.body.classList.toggle('dark');
-  toggle.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
-});
-</script>
-
+<script src="assets/script.js"></script>
 </body>
 </html>
