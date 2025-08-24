@@ -1,40 +1,37 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>5Levels - موقع المعرفة والفلسفة</title>
-  <link rel="stylesheet" href="assets/style.css" />
-  <!-- استخدم defer ليعمل السكربت حتى لو كان في <head> -->
-  <script src="assets/script.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>5Levels</title>
+  <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-  <header>
-    <div class="logo">
-      <!-- إذا ما عندك صورة، احذف السطر التالي أو أضف صورة داخل assets/images/logo.png -->
-      <!-- <img src="assets/images/logo.png" alt="5Levels Logo" height="40" /> -->
-      <h1 id="site-title">5Levels</h1>
+  <!-- Header -->
+  <header class="header">
+    <h1>5Levels</h1>
+    <div class="controls">
+      <button id="theme-toggle">🌙</button>
+      <select id="language-switcher">
+        <option value="en">EN</option>
+        <option value="es">ES</option>
+        <option value="de">DE</option>
+        <option value="ar">AR</option>
+      </select>
     </div>
-    <nav>
-      <button id="toggle-theme" aria-label="Toggle theme">🌙</button>
-      <div class="lang-selector">
-        <button type="button" data-lang="ar">AR</button>
-        <button type="button" data-lang="en">EN</button>
-        <button type="button" data-lang="es">ES</button>
-        <button type="button" data-lang="de">DE</button>
-      </div>
-    </nav>
   </header>
 
-  <main>
-    <div class="search-bar">
-      <input type="search" id="search-input" placeholder="ابحث عن موضوع..." />
-    </div>
-    <div id="topics-container"></div>
+  <!-- Main Content -->
+  <main class="main">
+    <input type="text" id="search" placeholder="Search a topic...">
+    <p id="welcome-text">Welcome to 5Levels – Explore knowledge step by step.</p>
   </main>
 
-  <footer>
-    &copy; <span id="year"></span> 5Levels. كل الحقوق محفوظة.
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 5Levels. All rights reserved.</p>
   </footer>
+
+  <script src="assets/script.js"></script>
 </body>
 </html>
