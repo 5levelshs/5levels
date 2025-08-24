@@ -1,43 +1,40 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>5Levels - موقع المعرفة والفلسفة</title>
-<link rel="stylesheet" href="assets/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>5Levels - موقع المعرفة والفلسفة</title>
+  <link rel="stylesheet" href="assets/style.css" />
+  <!-- استخدم defer ليعمل السكربت حتى لو كان في <head> -->
+  <script src="assets/script.js" defer></script>
 </head>
 <body>
-
-<header>
-  <div class="logo">
-    <img src="assets/images/logo.png" alt="5Levels Logo" height="50">
-    <h1 id="site-title">5Levels</h1>
-  </div>
-  <nav>
-    <button id="toggle-theme">🌙</button>
-    <div class="lang-selector">
-      <button data-lang="ar">AR</button>
-      <button data-lang="en">EN</button>
-      <button data-lang="es">ES</button>
-      <button data-lang="de">DE</button>
+  <header>
+    <div class="logo">
+      <!-- إذا ما عندك صورة، احذف السطر التالي أو أضف صورة داخل assets/images/logo.png -->
+      <!-- <img src="assets/images/logo.png" alt="5Levels Logo" height="40" /> -->
+      <h1 id="site-title">5Levels</h1>
     </div>
-  </nav>
-</header>
+    <nav>
+      <button id="toggle-theme" aria-label="Toggle theme">🌙</button>
+      <div class="lang-selector">
+        <button type="button" data-lang="ar">AR</button>
+        <button type="button" data-lang="en">EN</button>
+        <button type="button" data-lang="es">ES</button>
+        <button type="button" data-lang="de">DE</button>
+      </div>
+    </nav>
+  </header>
 
-<main>
-  <div class="search-bar">
-    <input type="text" id="search-input" placeholder="ابحث عن موضوع...">
-  </div>
+  <main>
+    <div class="search-bar">
+      <input type="search" id="search-input" placeholder="ابحث عن موضوع..." />
+    </div>
+    <div id="topics-container"></div>
+  </main>
 
-  <div id="topics-container">
-    <!-- المواضيع ستظهر هنا -->
-  </div>
-</main>
-
-<footer>
-  &copy; 2025 5Levels. كل الحقوق محفوظة.
-</footer>
-
-<script src="assets/script.js"></script>
+  <footer>
+    &copy; <span id="year"></span> 5Levels. كل الحقوق محفوظة.
+  </footer>
 </body>
 </html>
