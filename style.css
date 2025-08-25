@@ -1,109 +1,59 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  direction: rtl;
-  line-height: 1.6;
-}
+body {font-family: Arial; margin:0; padding:0; direction:rtl; line-height:1.6;}
+h1,h2,h3{margin:0 0 15px;text-align:center;}
 
-/* رأس الموقع */
-header {
-  background: #333;
-  color: white;
-  padding: 15px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+/* Header */
+header{background:#333;color:white;padding:15px;display:flex;justify-content:space-between;align-items:center;}
+header .logo i{margin-left:10px;}
+.menu{list-style:none;margin:0;padding:0;display:flex;}
+.menu li{margin:0 10px;}
+.menu a{color:white;text-decoration:none;}
+.menu-toggle{display:none;font-size:24px;cursor:pointer;color:white;}
 
-.menu {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-}
+/* Sections */
+section{padding:40px 20px;text-align:center;margin-bottom:20px;opacity:0; transform:translateY(20px); transition:0.8s;}
+section.visible{opacity:1; transform:translateY(0);}
+section:nth-of-type(even){background:#f9f9f9;}
 
-.menu li {
-  margin: 0 10px;
-}
+/* Buttons */
+button{padding:10px 20px;border:none;border-radius:5px;cursor:pointer;background:#2196f3;color:white;}
+button:hover{background:#0b7dda;}
 
-.menu a {
-  color: white;
-  text-decoration: none;
-}
+/* Cards */
+.cards{display:flex;flex-wrap:wrap;justify-content:center;gap:15px;margin-top:20px;}
+.card{background:#f1f1f1;padding:20px;border-radius:10px;width:200px;text-align:center;box-shadow:0 2px 5px rgba(0,0,0,0.1);transition:0.3s;}
+.card i{font-size:24px;margin-bottom:10px;}
+.card:hover{background:#e0e0e0;transform:translateY(-5px);}
 
-.menu-toggle {
-  display: none;
-  font-size: 24px;
-  cursor: pointer;
-  color: white;
-}
+/* Level buttons */
+.levels{margin:20px 0;}
+.level-btn{margin:5px;padding:10px 15px;border:none;border-radius:5px;cursor:pointer;transition:0.3s;}
+.level-btn.level1{background:#ffadad;color:white;}
+.level-btn.level2{background:#ffd6a5;color:white;}
+.level-btn.level3{background:#fdffb6;color:#333;}
+.level-btn.level4{background:#caffbf;color:#333;}
+.level-btn.level5{background:#9bf6ff;color:#333;}
+.level-btn:hover{opacity:0.8;}
 
-/* أقسام */
-section {
-  padding: 40px 20px;
-  text-align: center;
-}
+/* Level content */
+.level-content{margin-top:20px;padding:15px;border-radius:8px;background:#f9f9f9;transition:0.3s;}
 
-.topics .levels {
-  margin: 20px 0;
-}
+/* Form */
+form{max-width:400px;margin:auto;display:flex;flex-direction:column;gap:10px;}
+form input,form textarea{padding:10px;border:1px solid #ccc;border-radius:5px;}
+form button{background:#4CAF50;color:white;border:none;padding:10px;}
+form button:hover{background:#45a049;}
 
-.level-btn {
-  margin: 5px;
-  padding: 10px 15px;
-  background: #2196f3;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
+/* Scroll Top */
+#scrollTop{position:fixed;bottom:30px;right:30px;padding:10px 15px;border:none;border-radius:50%;background:#333;color:white;cursor:pointer;display:none;transition:0.3s;}
+#scrollTop:hover{background:#555;}
 
-.level-btn:hover {
-  background: #0b7dda;
-}
+/* Footer */
+footer{background:#333;color:white;text-align:center;padding:15px;}
 
-.level-content {
-  margin-top: 20px;
-  padding: 15px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background: #f9f9f9;
-}
-
-/* تواصل */
-form {
-  max-width: 400px;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-form input, form textarea {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-form button {
-  background: #4CAF50;
-  color: white;
-  border: none;
-  padding: 10px;
-}
-
-footer {
-  background: #333;
-  color: white;
-  text-align: center;
-  padding: 15px;
-}
-
-/* موبايل */
-@media (max-width: 768px) {
-  .menu { display: none; flex-direction: column; background: #333; position: absolute; top: 50px; right: 0; width: 200px; }
-  .menu li { margin: 10px 0; }
-  .menu.show { display: flex; }
-  .menu-toggle { display: block; }
+/* Responsive */
+@media(max-width:768px){
+  .menu{display:none;flex-direction:column;background:#333;position:absolute;top:50px;right:0;width:200px;}
+  .menu li{margin:10px 0;}
+  .menu.show{display:flex;}
+  .menu-toggle{display:block;}
 }
