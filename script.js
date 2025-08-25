@@ -1,120 +1,97 @@
-// Menu toggle
+// القائمة والتمرير
 const menuToggle = document.getElementById("menuToggle");
 const menu = document.getElementById("menu");
 menuToggle.addEventListener("click", () => { menu.classList.toggle("show"); });
 
-// Scroll to Top
 const scrollTopBtn = document.getElementById("scrollTop");
 window.addEventListener("scroll", () => {
   scrollTopBtn.style.display = window.scrollY > 300 ? "block" : "none";
-
-  // Scroll Animation
   document.querySelectorAll("section").forEach(sec => {
-    if(sec.getBoundingClientRect().top < window.innerHeight - 100){
-      sec.classList.add("visible");
-    }
+    if(sec.getBoundingClientRect().top < window.innerHeight - 100){ sec.classList.add("visible"); }
   });
 });
 scrollTopBtn.addEventListener("click", () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
 
-// المواضيع مع 5 مستويات
-const topicsData = {
-  "الذكاء الاصطناعي":{
-    1:"👶 المستوى 1: الكمبيوتر يحاول التفكير مثل الإنسان.",
-    2:"📘 المستوى 2: برامج تتعلم وتساعدنا.",
-    3:"🎓 المستوى 3: خوارزميات وشبكات عصبية.",
-    4:"🧠 المستوى 4: تعلم الآلة والتعلم العميق.",
-    5:"📚 المستوى 5: أنظمة قادرة على اتخاذ قرارات مستقلة."
+// الوضع الداكن
+document.getElementById("toggleDark").addEventListener("click", () => { document.body.classList.toggle("dark"); });
+
+// النصوص العربية والإنجليزية
+const texts = {
+  "ar": {
+    introTitle:"ما هو 5Levels؟",
+    introText:"موقع يشرح أي موضوع بخمس مستويات: من البسيط جدًا إلى المعقد جدًا، مع تجربة ممتعة ومرئية.",
+    introButton:"جرب الآن 🚀",
+    featuresTitle:"ميزات الموقع",
+    feature1:"قائمة متجاوبة",
+    feature2:"5 مستويات لكل موضوع",
+    feature3:"ألوان متناسقة",
+    feature4:"حركة عند التمرير",
+    feature5:"نموذج تواصل",
+    feature6:"مقالات تعليمية",
+    topicsTitle:"اختر موضوعك",
+    articlesTitle:"مقالاتنا",
+    contactTitle:"اتصل بنا",
+    sendButton:"إرسال",
+    footer:"تبسيط المعرفة للجميع",
+    name:"الاسم",
+    email:"البريد الإلكتروني",
+    message:"رسالتك"
   },
-  "البرمجة":{
-    1:"👶 المستوى 1: إعطاء الكمبيوتر تعليمات بسيطة.",
-    2:"📘 المستوى 2: تعلم لغات مثل Python أو Scratch.",
-    3:"🎓 المستوى 3: حلقات ودوال ومصفوفات.",
-    4:"🧠 المستوى 4: برامج وخوارزميات متقدمة.",
-    5:"📚 المستوى 5: البرمجة كعلم وهندسة."
-  },
-  "الصحة":{
-    1:"👶 المستوى 1: الأكل الصحي مهم للنمو.",
-    2:"📘 المستوى 2: النوم والرياضة جزء من الحياة.",
-    3:"🎓 المستوى 3: أساسيات التغذية واللياقة.",
-    4:"🧠 المستوى 4: دراسة الأمراض والوقاية.",
-    5:"📚 المستوى 5: أبحاث متقدمة في الطب والصحة."
-  },
-  "الرياضيات":{
-    1:"👶 المستوى 1: الأرقام والجمع والطرح.",
-    2:"📘 المستوى 2: الجبر البسيط والمعادلات.",
-    3:"🎓 المستوى 3: الهندسة والإحصاء.",
-    4:"🧠 المستوى 4: التفاضل والتكامل.",
-    5:"📚 المستوى 5: نظريات رياضية متقدمة."
-  },
-  "التاريخ":{
-    1:"👶 المستوى 1: الأحداث البسيطة والشخصيات.",
-    2:"📘 المستوى 2: العصور القديمة والوسطى.",
-    3:"🎓 المستوى 3: الحروب والثورات.",
-    4:"🧠 المستوى 4: التاريخ السياسي والاجتماعي.",
-    5:"📚 المستوى 5: تحليلات تاريخية متعمقة."
+  "en": {
+    introTitle:"What is 5Levels?",
+    introText:"5Levels explains any topic in five levels: from very simple to very complex, with an enjoyable visual experience.",
+    introButton:"Try Now 🚀",
+    featuresTitle:"Website Features",
+    feature1:"Responsive Menu",
+    feature2:"5 Levels per Topic",
+    feature3:"Colorful Design",
+    feature4:"Scroll Animation",
+    feature5:"Contact Form",
+    feature6:"Educational Articles",
+    topicsTitle:"Choose Your Topic",
+    articlesTitle:"Our Articles",
+    contactTitle:"Contact Us",
+    sendButton:"Send",
+    footer:"Simplifying Knowledge for Everyone",
+    name:"Name",
+    email:"Email",
+    message:"Your Message"
   }
 };
-
-// توليد المواضيع ديناميكياً
-const topicsSection = document.getElementById("topics");
-for(let topic in topicsData){
-  const div = document.createElement("div");
-  div.classList.add("topic");
-
-  const h3 = document.createElement("h3");
-  h3.textContent = topic;
-  div.appendChild(h3);
-
-  const levelsDiv = document.createElement("div");
-  levelsDiv.classList.add("levels");
-
-  for(let i=1;i<=5;i++){
-    const btn = document.createElement("button");
-    btn.classList.add("level-btn","level"+i);
-    btn.dataset.topic = topic;
-    btn.dataset.level = i;
-    btn.textContent = `المستوى ${i}`;
-    levelsDiv.appendChild(btn);
-  }
-  div.appendChild(levelsDiv);
-
-  const contentDiv = document.createElement("div");
-  contentDiv.classList.add("level-content");
-  contentDiv.id = `content-${topic.replace(/\s+/g,'')}`;
-  contentDiv.innerHTML="<p>اختر مستوى لتبدأ 🚀</p>";
-  div.appendChild(contentDiv);
-
-  topicsSection.appendChild(div);
-}
-
-// الضغط على أزرار المستوى
-document.querySelectorAll(".level-btn").forEach(btn=>{
-  btn.addEventListener("click",()=>{
-    const topic = btn.dataset.topic;
-    const level = btn.dataset.level;
-    const contentDiv = document.getElementById(`content-${topic.replace(/\s+/g,'')}`);
-    contentDiv.innerHTML=`<p>${topicsData[topic][level]}</p>`;
+let currentLang="ar";
+document.getElementById("toggleLanguage").addEventListener("click", ()=>{
+  currentLang = currentLang==="ar"?"en":"ar";
+  document.getElementById("toggleLanguage").innerText=currentLang==="ar"?"EN":"AR";
+  document.querySelectorAll("[data-key]").forEach(el=>{
+    el.innerText=texts[currentLang][el.dataset.key];
+  });
+  document.querySelectorAll("[data-key-placeholder]").forEach(el=>{
+    el.placeholder=texts[currentLang][el.dataset.keyPlaceholder];
   });
 });
 
-// زر intro
-document.getElementById("myButton").addEventListener("click",()=>{
-  alert("مرحبًا! استكشف المواضيع المختلفة على 5Levels 🚀");
-});
-
-// توليد المقالات 5 طرق لكل موضوع
-const articlesContainer = document.getElementById("articlesContainer");
-for(let topic in topicsData){
-  const card = document.createElement("div");
-  card.classList.add("card");
-  card.innerHTML=`<h3>${topic}</h3>
-    <ul>
-      <li>${topicsData[topic][1]}</li>
-      <li>${topicsData[topic][2]}</li>
-      <li>${topicsData[topic][3]}</li>
-      <li>${topicsData[topic][4]}</li>
-      <li>${topicsData[topic][5]}</li>
-    </ul>`;
-  articlesContainer.appendChild(card);
-}
+// المواضيع والفقرات لكل مستوى
+const topicsData = {
+  "الذكاء الاصطناعي": {
+    ar:[
+      "👶 المستوى 1 للأطفال: الذكاء الاصطناعي يجعل الكمبيوتر يفكر مثل الإنسان. فقرة كاملة تشرح بطريقة بسيطة.",
+      "📘 المستوى 2 مبتدئين: برامج تتعلم من البيانات وتساعدنا في حياتنا اليومية. فقرة مفصلة تشرح الفكرة.",
+      "🎓 المستوى 3 طلاب: خوارزميات التعلم الآلي والشبكات العصبية البسيطة، مع أمثلة عملية.",
+      "🧠 المستوى 4 خبراء: التعلم العميق، معالجة اللغة، الرؤية الحاسوبية واتخاذ القرارات الذكية. شرح مفصل.",
+      "📚 المستوى 5 أكاديمي: أبحاث متقدمة في النماذج التوليدية، الذكاء الاصطناعي العام، والتطبيقات العلمية."
+    ],
+    en:[
+      "👶 Level 1 Kids: AI makes computers think like humans. Full paragraph explaining simply.",
+      "📘 Level 2 Beginners: Programs learn from data and help us in daily life. Detailed paragraph.",
+      "🎓 Level 3 Students: Machine learning algorithms and basic neural networks, with practical examples.",
+      "🧠 Level 4 Experts: Deep learning, NLP, computer vision, decision making. Full explanation.",
+      "📚 Level 5 Academic: Advanced research in generative models, AGI, and scientific applications."
+    ]
+  },
+  "البرمجة": {
+    ar:[
+      "👶 المستوى 1 للأطفال: البرمجة تعني إعطاء الكمبيوتر تعليمات بسيطة.",
+      "📘 المستوى 2 مبتدئين: تعلم لغات مثل Python أو Scratch لكتابة برامج صغيرة.",
+      "🎓 المستوى 3 طلاب: فهم الحلقات، الدوال، المصفوفات، وإنشاء برامج متوسطة.",
+      "🧠 المستوى 4 خبراء: تصميم برامج متقدمة، خوارزميات قوية، تطبيقات ويب وذكاء اصطناعي.",
+      "📚
