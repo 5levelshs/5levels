@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>5Levels - تبسيط المعرفة</title>
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>5Levels - تبسيط المعرفة</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
 
+<!-- Header -->
 <header>
   <h1 class="logo"><i class="fas fa-layer-group"></i> 5Levels</h1>
   <nav>
     <ul class="menu" id="menu">
       <li><a href="#">الرئيسية</a></li>
-      <li><a href="#how">كيف نعمل؟</a></li>
-      <li><a href="#topics">المواضيع</a></li>
-      <li><a href="#articles">المقالات</a></li>
       <li><a href="#features">الميزات</a></li>
+      <li><a href="#topics">المواضيع</a></li>
+      <li><a href="#philosophy">الفلسفة</a></li>
       <li><a href="#contact">اتصل بنا</a></li>
     </ul>
     <div class="menu-toggle" id="menuToggle">☰</div>
@@ -26,47 +26,57 @@
   <button id="toggleDark">🌙</button>
 </header>
 
-<section class="intro" id="how">
-  <h2 data-key="introTitle">ما هو 5Levels؟</h2>
-  <p data-key="introText">موقع يشرح أي موضوع بخمس مستويات: من البسيط جدًا إلى المعقد جدًا، مع تجربة ممتعة ومرئية.</p>
-  <button id="myButton" data-key="introButton">جرب الآن 🚀</button>
+<!-- Intro -->
+<section class="intro">
+  <h2 data-key="introTitle">مرحبا بك في 5Levels</h2>
+  <p data-key="introText">موقع يشرح أي فكرة بخمس مستويات: من البسيط جدًا إلى الفلسفي العميق.</p>
+  <button id="myButton">جرب الآن 🚀</button>
 </section>
 
+<!-- Features -->
 <section class="features" id="features">
-  <h2 data-key="featuresTitle">ميزات الموقع</h2>
+  <h2>ميزات الموقع</h2>
   <div class="cards">
-    <div class="card"><i class="fas fa-mobile-alt"></i> <span data-key="feature1">قائمة متجاوبة</span></div>
-    <div class="card"><i class="fas fa-layer-group"></i> <span data-key="feature2">5 مستويات لكل موضوع</span></div>
-    <div class="card"><i class="fas fa-paint-brush"></i> <span data-key="feature3">ألوان متناسقة</span></div>
-    <div class="card"><i class="fas fa-rocket"></i> <span data-key="feature4">حركة عند التمرير</span></div>
-    <div class="card"><i class="fas fa-envelope"></i> <span data-key="feature5">نموذج تواصل</span></div>
-    <div class="card"><i class="fas fa-book"></i> <span data-key="feature6">مقالات تعليمية</span></div>
+    <div class="card"><i class="fas fa-mobile-alt"></i> متجاوب</div>
+    <div class="card"><i class="fas fa-layer-group"></i> 5 مستويات</div>
+    <div class="card"><i class="fas fa-moon"></i> الوضع الداكن</div>
+    <div class="card"><i class="fas fa-language"></i> تغيير اللغة</div>
+    <div class="card"><i class="fas fa-book"></i> مقالات تعليمية</div>
   </div>
 </section>
 
+<!-- Topics -->
 <section class="topics" id="topics">
-  <h2 data-key="topicsTitle">اختر موضوعك</h2>
+  <h2>المواضيع</h2>
+  <p>اختر موضوعك المفضل لتتعلم بخمس طرق مختلفة</p>
 </section>
 
-<section class="articles" id="articles">
-  <h2 data-key="articlesTitle">مقالاتنا</h2>
-  <div class="cards" id="articlesContainer"></div>
+<!-- Philosophy -->
+<section class="philosophy" id="philosophy">
+  <h2>الفلسفة</h2>
+  <div class="philosopher">
+    <h3>لاو تسي (Lao Tzu)</h3>
+    <blockquote>
+      <a href="lao.html">"السماء والأرض ليس لهما عاطفة، إنهما تعاملان جميع الكائنات كما لو كانت كلاب قشية."</a>
+    </blockquote>
+    <p>اضغط على المقولة لتقرأ شرحها بخمس مستويات مختلفة.</p>
+  </div>
 </section>
 
+<!-- Contact -->
 <section class="contact" id="contact">
-  <h2 data-key="contactTitle">اتصل بنا</h2>
+  <h2>اتصل بنا</h2>
   <form>
-    <input type="text" placeholder="الاسم" required data-key-placeholder="name">
-    <input type="email" placeholder="البريد الإلكتروني" required data-key-placeholder="email">
-    <textarea placeholder="رسالتك" required data-key-placeholder="message"></textarea>
-    <button type="submit" data-key="sendButton">إرسال</button>
+    <input type="text" placeholder="الاسم" required>
+    <input type="email" placeholder="البريد الإلكتروني" required>
+    <textarea placeholder="رسالتك"></textarea>
+    <button type="submit">إرسال</button>
   </form>
 </section>
 
-<button id="scrollTop"><i class="fas fa-arrow-up"></i></button>
-
+<!-- Footer -->
 <footer>
-  <p>© 2025 5Levels | <span data-key="footer">تبسيط المعرفة للجميع</span></p>
+  <p>© 2025 5Levels - تبسيط المعرفة للجميع</p>
 </footer>
 
 <script src="script.js"></script>
