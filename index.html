@@ -1,71 +1,80 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>5Levels - تبسيط المعرفة</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>5Levels - تبسيط المعرفة</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
 
-  <!-- رأس الموقع -->
-  <header>
-    <h1 class="logo">5Levels</h1>
-    <nav>
-      <ul class="menu" id="menu">
-        <li><a href="#">الرئيسية</a></li>
-        <li><a href="#how">كيف نعمل؟</a></li>
-        <li><a href="#topics">المواضيع</a></li>
-        <li><a href="#contact">اتصل بنا</a></li>
-      </ul>
-      <div class="menu-toggle" id="menuToggle">☰</div>
-    </nav>
-  </header>
+<!-- Header -->
+<header>
+  <h1 class="logo"><i class="fas fa-layer-group"></i> 5Levels</h1>
+  <nav>
+    <ul class="menu" id="menu">
+      <li><a href="#">الرئيسية</a></li>
+      <li><a href="#how">كيف نعمل؟</a></li>
+      <li><a href="#topics">المواضيع</a></li>
+      <li><a href="#articles">المقالات</a></li>
+      <li><a href="#features">الميزات</a></li>
+      <li><a href="#contact">اتصل بنا</a></li>
+    </ul>
+    <div class="menu-toggle" id="menuToggle">☰</div>
+  </nav>
+</header>
 
-  <!-- قسم تعريفي -->
-  <section class="intro" id="how">
-    <h2>ما هو 5Levels؟</h2>
-    <p>
-      5Levels هو موقع يشرح أي موضوع بخمس مستويات:  
-      من الشرح البسيط جدًا وصولًا للتعمق الكامل.  
-      الهدف: أن يفهم الجميع حسب مستواه. 🎓
-    </p>
-  </section>
+<!-- Intro Section -->
+<section class="intro" id="how">
+  <h2>ما هو 5Levels؟</h2>
+  <p>موقع يشرح أي موضوع بخمس مستويات: من البسيط جدًا إلى المعقد جدًا، مع تجربة ممتعة ومرئية.</p>
+  <button id="myButton">جرب الآن 🚀</button>
+</section>
 
-  <!-- قسم المواضيع -->
-  <section class="topics" id="topics">
-    <h2>اختر موضوعك</h2>
-    <div class="topic">
-      <h3>مثال: الذكاء الاصطناعي</h3>
-      <div class="levels">
-        <button class="level-btn" data-level="1">المستوى 1</button>
-        <button class="level-btn" data-level="2">المستوى 2</button>
-        <button class="level-btn" data-level="3">المستوى 3</button>
-        <button class="level-btn" data-level="4">المستوى 4</button>
-        <button class="level-btn" data-level="5">المستوى 5</button>
-      </div>
-      <div class="level-content" id="levelContent">
-        <p>اختر مستوى لتبدأ 🚀</p>
-      </div>
-    </div>
-  </section>
+<!-- Features Section -->
+<section class="features" id="features">
+  <h2>ميزات الموقع</h2>
+  <div class="cards">
+    <div class="card"><i class="fas fa-mobile-alt"></i> قائمة متجاوبة</div>
+    <div class="card"><i class="fas fa-layer-group"></i> 5 مستويات لكل موضوع</div>
+    <div class="card"><i class="fas fa-paint-brush"></i> ألوان متناسقة</div>
+    <div class="card"><i class="fas fa-rocket"></i> حركة عند التمرير</div>
+    <div class="card"><i class="fas fa-envelope"></i> نموذج تواصل</div>
+    <div class="card"><i class="fas fa-book"></i> مقالات تعليمية</div>
+  </div>
+</section>
 
-  <!-- قسم التواصل -->
-  <section class="contact" id="contact">
-    <h2>اتصل بنا</h2>
-    <form>
-      <input type="text" placeholder="الاسم" required>
-      <input type="email" placeholder="البريد الإلكتروني" required>
-      <textarea placeholder="رسالتك" required></textarea>
-      <button type="submit">إرسال</button>
-    </form>
-  </section>
+<!-- Topics Section -->
+<section class="topics" id="topics">
+  <h2>اختر موضوعك</h2>
+</section>
 
-  <!-- الفوتر -->
-  <footer>
-    <p>© 2025 5Levels | تبسيط المعرفة للجميع</p>
-  </footer>
+<!-- Articles Section -->
+<section class="articles" id="articles">
+  <h2>مقالاتنا</h2>
+  <div class="cards" id="articlesContainer"></div>
+</section>
 
-  <script src="script.js"></script>
+<!-- Contact Section -->
+<section class="contact" id="contact">
+  <h2>اتصل بنا</h2>
+  <form>
+    <input type="text" placeholder="الاسم" required>
+    <input type="email" placeholder="البريد الإلكتروني" required>
+    <textarea placeholder="رسالتك" required></textarea>
+    <button type="submit">إرسال</button>
+  </form>
+</section>
+
+<!-- Scroll to Top -->
+<button id="scrollTop"><i class="fas fa-arrow-up"></i></button>
+
+<!-- Footer -->
+<footer>
+  <p>© 2025 5Levels | تبسيط المعرفة للجميع</p>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
