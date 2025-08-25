@@ -3,50 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>موقعي الأول</title>
+  <title>5Levels - تبسيط المعرفة</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <!-- رأس الموقع -->
   <header>
-    <h1 class="logo">موقعي</h1>
+    <h1 class="logo">5Levels</h1>
     <nav>
       <ul class="menu" id="menu">
         <li><a href="#">الرئيسية</a></li>
-        <li><a href="#about">من نحن</a></li>
-        <li><a href="#services">الخدمات</a></li>
+        <li><a href="#how">كيف نعمل؟</a></li>
+        <li><a href="#topics">المواضيع</a></li>
         <li><a href="#contact">اتصل بنا</a></li>
       </ul>
       <div class="menu-toggle" id="menuToggle">☰</div>
     </nav>
   </header>
 
-  <!-- قسم ترحيب -->
-  <section class="intro" id="about">
-    <h2>مرحبًا بك في موقعي</h2>
+  <!-- قسم تعريفي -->
+  <section class="intro" id="how">
+    <h2>ما هو 5Levels؟</h2>
     <p>
-      هذا مثال لموقع بسيط تم تصميمه باستخدام HTML و CSS و JavaScript.  
-      يمكنك التعديل عليه وإضافة ما تريد بكل سهولة. 🚀
+      5Levels هو موقع يشرح أي موضوع بخمس مستويات:  
+      من الشرح البسيط جدًا وصولًا للتعمق الكامل.  
+      الهدف: أن يفهم الجميع حسب مستواه. 🎓
     </p>
-    <button id="myButton">اضغط هنا</button>
   </section>
 
-  <!-- قسم الخدمات -->
-  <section class="services" id="services">
-    <h2>خدماتنا</h2>
-    <div class="cards">
-      <div class="card">
-        <h3>تصميم مواقع</h3>
-        <p>نصمم مواقع عصرية وسهلة الاستخدام.</p>
+  <!-- قسم المواضيع -->
+  <section class="topics" id="topics">
+    <h2>اختر موضوعك</h2>
+    <div class="topic">
+      <h3>مثال: الذكاء الاصطناعي</h3>
+      <div class="levels">
+        <button class="level-btn" data-level="1">المستوى 1</button>
+        <button class="level-btn" data-level="2">المستوى 2</button>
+        <button class="level-btn" data-level="3">المستوى 3</button>
+        <button class="level-btn" data-level="4">المستوى 4</button>
+        <button class="level-btn" data-level="5">المستوى 5</button>
       </div>
-      <div class="card">
-        <h3>برمجة</h3>
-        <p>حلول برمجية متكاملة تناسب جميع الأعمال.</p>
-      </div>
-      <div class="card">
-        <h3>دعم فني</h3>
-        <p>خدمة عملاء على مدار الساعة.</p>
+      <div class="level-content" id="levelContent">
+        <p>اختر مستوى لتبدأ 🚀</p>
       </div>
     </div>
   </section>
@@ -64,7 +63,7 @@
 
   <!-- الفوتر -->
   <footer>
-    <p>© 2025 جميع الحقوق محفوظة | تم التصميم بحب ❤️</p>
+    <p>© 2025 5Levels | تبسيط المعرفة للجميع</p>
   </footer>
 
   <script src="script.js"></script>
