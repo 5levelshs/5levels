@@ -1,15 +1,9 @@
-/* تنسيقات عامة */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   direction: rtl;
   line-height: 1.6;
-}
-
-h1, h2, h3 {
-  margin: 0 0 15px;
-  text-align: center;
 }
 
 /* رأس الموقع */
@@ -20,14 +14,6 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.logo {
-  margin: 0;
-}
-
-nav {
-  position: relative;
 }
 
 .menu {
@@ -44,14 +30,8 @@ nav {
 .menu a {
   color: white;
   text-decoration: none;
-  font-weight: bold;
 }
 
-.menu a:hover {
-  color: #ff9800;
-}
-
-/* زر القائمة للجوال */
 .menu-toggle {
   display: none;
   font-size: 24px;
@@ -59,59 +39,39 @@ nav {
   color: white;
 }
 
-/* قسم ترحيب */
-.intro {
+/* أقسام */
+section {
   padding: 40px 20px;
   text-align: center;
-  background: #f9f9f9;
 }
 
-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  border: none;
+.topics .levels {
+  margin: 20px 0;
+}
+
+.level-btn {
+  margin: 5px;
+  padding: 10px 15px;
   background: #2196f3;
   color: white;
+  border: none;
   border-radius: 5px;
   cursor: pointer;
 }
 
-button:hover {
+.level-btn:hover {
   background: #0b7dda;
 }
 
-/* قسم الخدمات */
-.services {
-  padding: 40px 20px;
-  background: #fff;
-}
-
-.cards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px;
-}
-
-.card {
-  background: #f1f1f1;
-  padding: 20px;
-  border-radius: 10px;
-  width: 250px;
-  text-align: center;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.card:hover {
-  background: #e0e0e0;
-}
-
-/* قسم التواصل */
-.contact {
-  padding: 40px 20px;
+.level-content {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
   background: #f9f9f9;
 }
 
+/* تواصل */
 form {
   max-width: 400px;
   margin: auto;
@@ -128,41 +88,22 @@ form input, form textarea {
 
 form button {
   background: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px;
 }
 
-form button:hover {
-  background: #45a049;
-}
-
-/* الفوتر */
 footer {
   background: #333;
   color: white;
-  padding: 15px;
   text-align: center;
+  padding: 15px;
 }
 
-/* استجابة للجوال */
+/* موبايل */
 @media (max-width: 768px) {
-  .menu {
-    display: none;
-    flex-direction: column;
-    background: #333;
-    position: absolute;
-    top: 50px;
-    right: 0;
-    width: 200px;
-  }
-
-  .menu li {
-    margin: 10px 0;
-  }
-
-  .menu.show {
-    display: flex;
-  }
-
-  .menu-toggle {
-    display: block;
-  }
+  .menu { display: none; flex-direction: column; background: #333; position: absolute; top: 50px; right: 0; width: 200px; }
+  .menu li { margin: 10px 0; }
+  .menu.show { display: flex; }
+  .menu-toggle { display: block; }
 }
