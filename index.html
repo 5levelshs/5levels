@@ -1,32 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>5Levels</title>
+  <title>موقعي الأول</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+  <!-- رأس الموقع -->
   <header>
-    <h1>5Levels</h1>
-    <div class="controls">
-      <button id="lang-en">EN</button>
-      <button id="lang-es">ES</button>
-      <button id="lang-de">DE</button>
-      <button id="lang-ar">AR</button>
-      <button id="toggle-theme">🌙</button>
-    </div>
+    <h1 class="logo">موقعي</h1>
+    <nav>
+      <ul class="menu" id="menu">
+        <li><a href="#">الرئيسية</a></li>
+        <li><a href="#about">من نحن</a></li>
+        <li><a href="#services">الخدمات</a></li>
+        <li><a href="#contact">اتصل بنا</a></li>
+      </ul>
+      <div class="menu-toggle" id="menuToggle">☰</div>
+    </nav>
   </header>
 
-  <main>
-    <input type="text" placeholder="ابحث عن موضوع..." id="search">
-    <div id="content">
-      <p>مرحباً بك في موقع 5Levels. هنا ستجد مقالات ومعرفة من مختلف المجالات.</p>
-    </div>
-  </main>
+  <!-- قسم ترحيب -->
+  <section class="intro" id="about">
+    <h2>مرحبًا بك في موقعي</h2>
+    <p>
+      هذا مثال لموقع بسيط تم تصميمه باستخدام HTML و CSS و JavaScript.  
+      يمكنك التعديل عليه وإضافة ما تريد بكل سهولة. 🚀
+    </p>
+    <button id="myButton">اضغط هنا</button>
+  </section>
 
+  <!-- قسم الخدمات -->
+  <section class="services" id="services">
+    <h2>خدماتنا</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>تصميم مواقع</h3>
+        <p>نصمم مواقع عصرية وسهلة الاستخدام.</p>
+      </div>
+      <div class="card">
+        <h3>برمجة</h3>
+        <p>حلول برمجية متكاملة تناسب جميع الأعمال.</p>
+      </div>
+      <div class="card">
+        <h3>دعم فني</h3>
+        <p>خدمة عملاء على مدار الساعة.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- قسم التواصل -->
+  <section class="contact" id="contact">
+    <h2>اتصل بنا</h2>
+    <form>
+      <input type="text" placeholder="الاسم" required>
+      <input type="email" placeholder="البريد الإلكتروني" required>
+      <textarea placeholder="رسالتك" required></textarea>
+      <button type="submit">إرسال</button>
+    </form>
+  </section>
+
+  <!-- الفوتر -->
   <footer>
-    <p>© 5Levels. كل الحقوق محفوظة.</p>
+    <p>© 2025 جميع الحقوق محفوظة | تم التصميم بحب ❤️</p>
   </footer>
 
   <script src="script.js"></script>
